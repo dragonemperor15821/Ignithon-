@@ -23,6 +23,81 @@ export interface UploadResponse {
   rejected: RejectedFile[];
 }
 
+export type EntityType =
+  | "datetime"
+  | "date"
+  | "time"
+  | "amount"
+  | "url"
+  | "transaction_id"
+  | "phone_number"
+  | "email_address";
+export type ExtractionStatus = "extracted" | "no_text" | "unavailable" | "failed";
+
+export interface ExtractedEntity {
+  id: string;
+  type: EntityType;
+  raw: string;
+  normalized: string | null;
+  unit: string | null;
+  source_evidence_ids: string[];
+  confidence: number;
+  char_start: number;
+  char_end: number;
+}
+
+export interface Claim {
+  id: string;
+  claim: string;
+  source_evidence_ids: string[];
+  confidence: number;
+  entity_ids: string[];
+  char_start: number | null;
+  char_end: number | null;
+}
+
+export interface ExtractionResult {
+  evidence_id: string;
+  status: ExtractionStatus;
+  method: string | null;
+  extracted_text: string | null;
+  text_truncated: boolean;
+  entities: ExtractedEntity[];
+  claims: Claim[];
+  confidence: number | null;
+  notes: string[];
+  extracted_at: string;
+  timestamps: ExtractedEntity[];
+  amounts: ExtractedEntity[];
+  urls: ExtractedEntity[];
+  transaction_ids: ExtractedEntity[];
+  phone_numbers: ExtractedEntity[];
+  email_addresses: ExtractedEntity[];
+}
+
+async function errorMessage(res: Response, fallback: string): Promise<string> {
+  const body = await res.json().catch(() => null);
+  return typeof body?.detail === "string" ? body.detail : `${fallback} (HTTP ${res.status})`;
+}
+
+export async function listExtractions(): Promise<ExtractionResult[]> {
+  const res = await fetch("/api/extractions");
+  if (!res.ok) throw new Error(await errorMessage(res, "Failed to load extractions"));
+  return res.json();
+}
+
+export async function extractEvidence(id: string): Promise<ExtractionResult> {
+  const res = await fetch(`/api/evidence/${encodeURIComponent(id)}/extract`, { method: "POST" });
+  if (!res.ok) throw new Error(await errorMessage(res, "Extraction failed"));
+  return res.json();
+}
+
+export async function runAllExtractions(): Promise<ExtractionResult[]> {
+  const res = await fetch("/api/extraction/run", { method: "POST" });
+  if (!res.ok) throw new Error(await errorMessage(res, "Extraction run failed"));
+  return res.json();
+}
+
 export const ACCEPTED_EXTENSIONS = ".png,.jpg,.jpeg,.webp,.pdf,.txt,.csv,.json,.doc,.docx";
 
 export async function listEvidence(): Promise<Evidence[]> {

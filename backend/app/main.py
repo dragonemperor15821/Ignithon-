@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import evidence, health
+from app.routers import evidence, extraction, health
 
 app = FastAPI(
     title="CaseForge API",
@@ -19,3 +19,4 @@ app.add_middleware(
 
 app.include_router(health.router)
 app.include_router(evidence.router)
+app.include_router(extraction.router)

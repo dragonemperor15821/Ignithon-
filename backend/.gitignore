@@ -5,6 +5,7 @@ __pycache__/
 data/*.db
 data/evidence.json
 data/extractions.json
+data/timeline.json
 data/*.tmp
 data/uploads/
 .env

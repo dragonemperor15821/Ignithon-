@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
+import CaseAnalysisPanel from "./components/CaseAnalysisPanel";
 import EvidenceSection from "./components/EvidenceSection";
+import TimelineSection from "./components/TimelineSection";
+import MissingInfoSection from "./components/MissingInfoSection";
+import ContradictionsSection from "./components/ContradictionsSection";
+import RedactionSection from "./components/RedactionSection";
+import ReportSection from "./components/ReportSection";
 
 type Health = "checking" | "online" | "offline";
 
-const STAGES = [
-  { id: "02", title: "Timeline", desc: "Chronological events, each linked to its source evidence." },
-  { id: "03", title: "Missing Information", desc: "Gaps flagged for investigation — never invented." },
-  { id: "04", title: "Contradictions", desc: "Conflicting claims surfaced side by side, not auto-resolved." },
-  { id: "05", title: "Redaction", desc: "PII masked on derived copies only." },
-  { id: "06", title: "Incident Report", desc: "Evidence-backed report generated from the reconstruction." },
-];
-
 export default function App() {
   const [health, setHealth] = useState<Health>("checking");
+  const [evidenceVersion, setEvidenceVersion] = useState(0); // evidence uploaded/changed
+  const [caseVersion, setCaseVersion] = useState(0); // a case analysis finished: reload every section
 
   useEffect(() => {
     fetch("/api/health")
@@ -45,28 +45,14 @@ export default function App() {
           <span className="text-emerald-500">$</span> pipeline: evidence → extraction → timeline → gaps → contradictions → redaction → report
         </p>
 
-        <EvidenceSection />
+        <CaseAnalysisPanel evidenceVersion={evidenceVersion} onAnalyzed={() => setCaseVersion((v) => v + 1)} />
+        <EvidenceSection refreshKey={caseVersion} onChanged={() => setEvidenceVersion((v) => v + 1)} />
+        <TimelineSection refreshKey={caseVersion} />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {STAGES.map((s) => (
-            <section
-              key={s.id}
-              className="group rounded-lg border border-slate-800 bg-slate-900/60 p-5 transition hover:border-emerald-500/50 hover:shadow-[0_0_24px_-8px_rgba(16,185,129,0.5)]"
-            >
-              <div className="mb-3 flex items-center justify-between">
-                <span className="text-xs text-emerald-500/70">[{s.id}]</span>
-                <span className="rounded bg-slate-800 px-2 py-0.5 text-[10px] uppercase tracking-wider text-slate-500">
-                  pending
-                </span>
-              </div>
-              <h2 className="text-lg font-semibold text-slate-100">{s.title}</h2>
-              <p className="mt-2 text-sm text-slate-400">{s.desc}</p>
-              <div className="mt-4 flex h-24 items-center justify-center rounded border border-dashed border-slate-700 text-xs text-slate-600">
-                no data
-              </div>
-            </section>
-          ))}
-        </div>
+        <MissingInfoSection refreshKey={caseVersion} />
+        <ContradictionsSection refreshKey={caseVersion} />
+        <RedactionSection refreshKey={caseVersion} />
+        <ReportSection refreshKey={caseVersion} />
       </main>
     </div>
   );

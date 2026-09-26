@@ -3,7 +3,12 @@ import { listEvidence, listExtractions, runAllExtractions, type Evidence, type E
 import EvidenceList from "./EvidenceList";
 import EvidenceUpload from "./EvidenceUpload";
 
-export default function EvidenceSection() {
+interface Props {
+  refreshKey?: number; // bumps after a case analysis
+  onChanged?: () => void; // evidence uploaded or (re-)analyzed
+}
+
+export default function EvidenceSection({ refreshKey = 0, onChanged }: Props) {
   const [evidence, setEvidence] = useState<Evidence[] | null>(null);
   const [extractions, setExtractions] = useState<Record<string, ExtractionResult>>({});
   const [error, setError] = useState<string | null>(null);
@@ -22,11 +27,20 @@ export default function EvidenceSection() {
 
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, [refresh, refreshKey]);
 
-  const onExtracted = useCallback((result: ExtractionResult) => {
-    setExtractions((prev) => ({ ...prev, [result.evidence_id]: result }));
-  }, []);
+  const onExtracted = useCallback(
+    (result: ExtractionResult) => {
+      setExtractions((prev) => ({ ...prev, [result.evidence_id]: result }));
+      onChanged?.();
+    },
+    [onChanged],
+  );
+
+  const onUploaded = useCallback(async () => {
+    await refresh();
+    onChanged?.();
+  }, [refresh, onChanged]);
 
   async function analyzeAll() {
     setRunningAll(true);
@@ -66,9 +80,10 @@ export default function EvidenceSection() {
           <button
             onClick={analyzeAll}
             disabled={runningAll}
-            className="rounded border border-emerald-500/50 bg-emerald-500/10 px-3 py-1.5 text-xs font-bold tracking-widest text-emerald-300 transition hover:bg-emerald-500/20 hover:shadow-[0_0_16px_-4px_rgba(16,185,129,0.8)] disabled:cursor-wait disabled:opacity-60"
+            title="Extract text only, without the rest of the pipeline (manual)"
+            className="rounded border border-slate-700 px-3 py-1.5 text-[10px] tracking-widest text-slate-400 transition hover:border-emerald-500/50 hover:text-emerald-300 disabled:cursor-wait disabled:opacity-60"
           >
-            {runningAll ? "ANALYZING…" : `[ ANALYZE ${pending} PENDING ]`}
+            {runningAll ? "EXTRACTING…" : `EXTRACT ${pending} PENDING ONLY`}
           </button>
         )}
       </div>
@@ -79,7 +94,7 @@ export default function EvidenceSection() {
         </p>
       )}
 
-      <EvidenceUpload onUploaded={refresh} />
+      <EvidenceUpload onUploaded={onUploaded} />
       {evidence && <EvidenceList evidence={evidence} extractions={extractions} onExtracted={onExtracted} />}
     </section>
   );

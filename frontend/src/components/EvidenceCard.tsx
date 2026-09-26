@@ -64,7 +64,8 @@ export default function EvidenceCard({ evidence, extraction, onExtracted }: Prop
 
   return (
     <article
-      className={`rounded-lg border border-slate-800 bg-slate-900/60 p-4 transition hover:border-emerald-500/50 hover:shadow-[0_0_24px_-8px_rgba(16,185,129,0.5)] ${
+      id={`evidence-${evidence.id}`}
+      className={`scroll-mt-4 rounded-lg border target:border-emerald-400 target:shadow-[0_0_24px_-8px_rgba(16,185,129,0.9)] border-slate-800 bg-slate-900/60 p-4 transition hover:border-emerald-500/50 hover:shadow-[0_0_24px_-8px_rgba(16,185,129,0.5)] ${
         showDetails ? "sm:col-span-2 lg:col-span-3" : ""
       }`}
     >
@@ -137,6 +138,11 @@ export default function EvidenceCard({ evidence, extraction, onExtracted }: Prop
               </div>
             ) : (
               <p className="mb-2 text-xs text-slate-400">{extraction.notes[0] ?? "Text could not be extracted."}</p>
+            )}
+            {extraction.method === "ocr" && (
+              <p className="mb-2 text-[10px] text-slate-500">
+                Text derived by OCR from the original image; the image remains the source evidence.
+              </p>
             )}
           </>
         )}

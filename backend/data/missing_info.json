@@ -1,0 +1,249 @@
+{
+  "next_seq": 14,
+  "ids": {
+    "unresolved_date|EV-001|CL-001|27/09/2026": "MI-001",
+    "unidentified_actor|EV-001|CL-001,CL-006,CL-007,CL-008|": "MI-002",
+    "missing_currency|EV-001|CL-004|25,000": "MI-003",
+    "missing_date|EV-001|CL-004|": "MI-004",
+    "missing_date|EV-001|CL-006|": "MI-005",
+    "missing_currency|EV-001|CL-007|10,000": "MI-006",
+    "missing_date|EV-001|CL-007|": "MI-007",
+    "unplaced_event|EV-001|CL-008|": "MI-008",
+    "missing_timestamp|EV-003|CL-013|": "MI-009",
+    "missing_date|EV-002|CL-009|": "MI-010",
+    "missing_date|EV-003|CL-014|": "MI-011",
+    "missing_date|EV-005|CL-017|": "MI-012",
+    "missing_date|EV-005|CL-020|": "MI-013"
+  },
+  "results": {
+    "report": {
+      "status": "ready",
+      "generated_at": "2026-09-26T06:57:07.662324Z",
+      "extraction_count": 5,
+      "items": [
+        {
+          "id": "MI-001",
+          "category": "unresolved_date",
+          "description": "Date written as '27/09/2026' was not resolved to a calendar date; numeric dates are not normalized because the day/month order is not stated",
+          "severity": "high",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-001"
+          ],
+          "timeline_event_ids": [
+            "TL-001"
+          ],
+          "supporting_text": "3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba"
+        },
+        {
+          "id": "MI-009",
+          "category": "missing_timestamp",
+          "description": "An amount is stated with no date or time in the same statement",
+          "severity": "high",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-003"
+          ],
+          "source_claim_ids": [
+            "CL-013"
+          ],
+          "timeline_event_ids": [
+            "TL-006"
+          ],
+          "supporting_text": "Bank support record: Transaction TXN12345 is marked successful for Rs 25,000."
+        },
+        {
+          "id": "MI-002",
+          "category": "unidentified_actor",
+          "description": "A sender/caller is referred to, but no phone number or email address identifying them is stated anywhere in this evidence",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-001",
+            "CL-006",
+            "CL-007",
+            "CL-008"
+          ],
+          "timeline_event_ids": [
+            "TL-001",
+            "TL-004"
+          ],
+          "supporting_text": "3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba"
+        },
+        {
+          "id": "MI-003",
+          "category": "missing_currency",
+          "description": "Number(s) '25,000' appear in a payment statement without a currency marker, so they are not treated as amounts",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-004"
+          ],
+          "timeline_event_ids": [
+            "TL-002"
+          ],
+          "supporting_text": "11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details."
+        },
+        {
+          "id": "MI-004",
+          "category": "missing_date",
+          "description": "Time 10:55 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-004"
+          ],
+          "timeline_event_ids": [
+            "TL-002"
+          ],
+          "supporting_text": "11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details."
+        },
+        {
+          "id": "MI-005",
+          "category": "missing_date",
+          "description": "Time 10:42 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-006"
+          ],
+          "timeline_event_ids": [],
+          "supporting_text": "7 At 10:42 AM, the sender requested that I verify my banking credentials through the link."
+        },
+        {
+          "id": "MI-006",
+          "category": "missing_currency",
+          "description": "Number(s) '10,000' appear in a payment statement without a currency marker, so they are not treated as amounts",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-007"
+          ],
+          "timeline_event_ids": [
+            "TL-004"
+          ],
+          "supporting_text": "13 At 11:00 AM, another payment of 10,000 was requested by the same sender."
+        },
+        {
+          "id": "MI-007",
+          "category": "missing_date",
+          "description": "Time 11:00 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-007"
+          ],
+          "timeline_event_ids": [
+            "TL-004"
+          ],
+          "supporting_text": "13 At 11:00 AM, another payment of 10,000 was requested by the same sender."
+        },
+        {
+          "id": "MI-008",
+          "category": "unplaced_event",
+          "description": "Event is described with a relative time ('later') and no stated date or time, so it cannot be placed on the timeline",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-001"
+          ],
+          "source_claim_ids": [
+            "CL-008"
+          ],
+          "timeline_event_ids": [],
+          "supporting_text": "15 The sender later claimed that no payment had been requested."
+        },
+        {
+          "id": "MI-010",
+          "category": "missing_date",
+          "description": "Time 11:00 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-002"
+          ],
+          "source_claim_ids": [
+            "CL-009"
+          ],
+          "timeline_event_ids": [
+            "TL-005"
+          ],
+          "supporting_text": "At 11:00 AM, another payment of Rs 10,000 was requested."
+        },
+        {
+          "id": "MI-011",
+          "category": "missing_date",
+          "description": "Time 11:15 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-003"
+          ],
+          "source_claim_ids": [
+            "CL-014"
+          ],
+          "timeline_event_ids": [
+            "TL-007"
+          ],
+          "supporting_text": "Recipient statement: No payment had been received at 11:15 AM."
+        },
+        {
+          "id": "MI-012",
+          "category": "missing_date",
+          "description": "Time 10:42 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-005"
+          ],
+          "source_claim_ids": [
+            "CL-017"
+          ],
+          "timeline_event_ids": [
+            "TL-009"
+          ],
+          "supporting_text": "At 10:42 AM, the victim received a message requesting bank"
+        },
+        {
+          "id": "MI-013",
+          "category": "missing_date",
+          "description": "Time 10:55 AM is stated without a date in the same statement",
+          "severity": "medium",
+          "status": "open",
+          "source_evidence_ids": [
+            "EV-005"
+          ],
+          "source_claim_ids": [
+            "CL-020"
+          ],
+          "timeline_event_ids": [
+            "TL-010"
+          ],
+          "supporting_text": "At 10:55 AM, a transaction of Rs 25,000 was recorded."
+        }
+      ],
+      "notes": []
+    }
+  }
+}

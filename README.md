@@ -16,6 +16,8 @@ uvicorn app.main:app --reload --port 8000
 
 Health check: http://127.0.0.1:8000/api/health
 
+Tests (stdlib `unittest`, use a throwaway data dir): `python -m unittest discover -s tests -v`
+
 ## Frontend (React + Vite + Tailwind, port 5173)
 
 ```bash

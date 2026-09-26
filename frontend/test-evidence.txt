@@ -1,0 +1,15 @@
+PHISHING INCIDENT TEST EVIDENCE
+
+On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my bank account would be suspended unless I verified my details.
+
+The message contained the URL https://secure-bank-login.example.com/verify.
+
+At 10:42 AM, the sender requested that I verify my banking credentials through the link.
+
+Transaction ID: TXN12345.
+
+At 10:55 AM, a transaction of ₹25,000 was recorded after the user entered their details.
+
+At 11:00 AM, another payment of ₹10,000 was requested by the same sender.
+
+The sender later claimed that no payment had been requested.

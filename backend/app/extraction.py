@@ -59,17 +59,143 @@ def _read_docx(path: Path) -> str:
     return "\n".join(parts)
 
 
+# OCR: RapidOCR (PaddleOCR models on ONNX Runtime). Pure pip install, models ship
+# inside the wheel, runs on CPU with no network access.
+OCR_MIN_SCORE = 0.5  # drop recognitions the engine itself is unsure of
+
+_ocr_engine = None
+
+
+def _get_ocr_engine():
+    global _ocr_engine
+    if _ocr_engine is None:
+        try:
+            from rapidocr_onnxruntime import RapidOCR
+        except ImportError:
+            raise Unavailable("OCR engine not installed (rapidocr_onnxruntime); image text was not extracted")
+        _ocr_engine = RapidOCR()
+    return _ocr_engine
+
+
+def _ocr_lines(detections: list) -> str:
+    """Rebuild reading order: group text boxes into visual lines, top to bottom, left to right."""
+    boxes = []
+    for box, text, score in detections:
+        if float(score) < OCR_MIN_SCORE or not text.strip():
+            continue
+        ys = [p[1] for p in box]
+        boxes.append((min(ys), max(ys), min(p[0] for p in box), text.strip()))
+    boxes.sort(key=lambda b: ((b[0] + b[1]) / 2, b[2], b[3]))
+
+    lines: list[dict] = []
+    for top, bottom, left, text in boxes:
+        middle = (top + bottom) / 2
+        if lines and lines[-1]["top"] <= middle <= lines[-1]["bottom"]:
+            lines[-1]["parts"].append((left, text))
+        else:
+            lines.append({"top": top, "bottom": bottom, "parts": [(left, text)]})
+    return "\n".join(" ".join(t for _, t in sorted(line["parts"])) for line in lines)
+
+
 def run_ocr(path: Path) -> str:
-    """OCR hook. Plug an engine in here; until then images report 'unavailable'."""
-    try:
-        import pytesseract
-        from PIL import Image
-    except ImportError:
-        raise Unavailable("OCR engine not installed; image text was not extracted")
-    try:
-        return pytesseract.image_to_string(Image.open(path))
-    except pytesseract.TesseractNotFoundError:
-        raise Unavailable("Tesseract binary not found; image text was not extracted")
+    """Derive text from an image. The image itself is never modified."""
+    engine = _get_ocr_engine()
+    detections, _ = engine(path.read_bytes())  # bytes: avoids OpenCV's non-ASCII path issues
+    return _ocr_lines(detections or [])
+
+
+# OCR cleanup: deterministic repairs of common recognizer slips. Each rule only fires
+# when the result is unambiguous; anything else is left exactly as recognized.
+OCR_VOCAB = frozenset(
+    """
+    a i an the this that these those my your our their his her its me we you they he she it them him us
+    no not never nor none nothing any anyone someone some all same another other only also then than
+    is are was were be been being am has had have having do did does done will would can could should may
+    of to for from with without by at on in into onto out up over under after before later earlier
+    again when while since until during about via per and or but if as so
+    sender caller victim user customer person scammer fraudster bank account link message call sms email
+    phone number details credentials password otp pin card payment payments money amount funds transaction
+    transfer refund reference order id no ref utr txn
+    requested request asked ask demanded demand paid pay made sent send received receive recorded entered
+    shared share clicked opened claimed claim said told verify verified blocked debited credited deducted
+    transferred processed completed contained suspicious unknown compromised another more now new
+    phishing incident test evidence banking through
+    """.split()
+)
+OCR_MIN_GLUED = 8
+NUMBER_PREFIX = re.compile(r"\b(At|at|On|on|of|by|to|for|from|Rs|INR)(?=\d)")
+MERIDIEM = re.compile(r"(?<=\d)(?=(?:AM|PM|am|pm)\b)|(?:(?<=\d)|(?<=\d[oO]))(?=(?:was|were|is|has|had|by|to|for|from|and|at|on|in)\b)")
+NUMERIC_RUN = re.compile(r"(?<![A-Za-z0-9])\d[0-9oOlI,.:/]*(?![A-Za-z0-9])")
+
+
+def _segment(token: str) -> list[str] | None:
+    """Split a glued token into known words (fewest pieces); None unless it splits completely."""
+    lower = token.lower()
+    best: list[list[int] | None] = [None] * (len(lower) + 1)
+    best[0] = []
+    for end in range(1, len(lower) + 1):
+        for start in range(end):
+            if best[start] is not None and lower[start:end] in OCR_VOCAB:
+                candidate = best[start] + [end]
+                if best[end] is None or len(candidate) < len(best[end]):
+                    best[end] = candidate
+    cuts = best[-1]
+    if not cuts or len(cuts) < 2:
+        return None
+    pieces, prev = [], 0
+    for cut in cuts:
+        pieces.append(token[prev:cut])
+        prev = cut
+    return pieces
+
+
+def clean_ocr_text(text: str) -> tuple[str, dict[str, int]]:
+    """Repair OCR spacing and digit slips. Returns (text, counts of each repair)."""
+    counts = {"word splits": 0, "spacing fixes": 0, "digit fixes": 0}
+    protected: list[tuple[int, int]] = []
+
+    def protect(current: str) -> None:  # emails and URLs are never altered
+        protected[:] = [m.span() for _, p, _, _ in PATTERNS[:2] for m in p.finditer(current)]
+
+    def outside(m: re.Match) -> bool:
+        return not any(s < m.end() and m.start() < e for s, e in protected)
+
+    protect(text)
+
+    def split(m: re.Match) -> str:
+        if not outside(m) or m.group().lower() in OCR_VOCAB:
+            return m.group()
+        pieces = _segment(m.group())
+        if pieces is None:
+            return m.group()
+        counts["word splits"] += 1
+        return " ".join(pieces)
+
+    text = re.sub(rf"[A-Za-z]{{{OCR_MIN_GLUED},}}", split, text)
+
+    def space(m: re.Match) -> str:
+        if not outside(m):
+            return m.group()
+        counts["spacing fixes"] += 1
+        return m.group() + " "
+
+    protect(text)
+    text = NUMBER_PREFIX.sub(space, text)
+    protect(text)
+    text = MERIDIEM.sub(space, text)
+
+    def digits(m: re.Match) -> str:
+        run = m.group()
+        if not outside(m) or sum(c.isdigit() for c in run) < 2:
+            return run
+        if not re.search(r"[,.:/]", run) or not re.search(r"[oOlI]", run):
+            return run
+        counts["digit fixes"] += 1
+        return run.translate(str.maketrans("oOlI", "0011"))
+
+    protect(text)
+    text = NUMERIC_RUN.sub(digits, text)
+    return text, counts
 
 
 def read_text(evidence: Evidence, path: Path) -> tuple[str, str]:
@@ -280,8 +406,18 @@ def find_entities(text: str, evidence_id: str) -> list[ExtractedEntity]:
 
 
 # ---------------------------------------------------------------------------
-# Claims: sentences / lines that contain at least one detected entity, verbatim.
+# Claims: sentences / lines, verbatim, that contain at least one detected entity
+# or state an incident action (request, payment, denial, ...). Action-only claims
+# carry no entities, so they never become timeline events on their own, but they
+# are available to contradiction and missing-information analysis.
 # ---------------------------------------------------------------------------
+
+ACTION_CUES = re.compile(
+    r"\b(?:request(?:ed|s|ing)?|ask(?:ed|s|ing)?|demand(?:ed|s)?|pa(?:y|id|ying|yments?)|"
+    r"transfer(?:red|s)?|sen[dt]|receiv(?:e|ed)|debited|credited|deducted|refund(?:ed)?|"
+    r"den(?:y|ied|ies)|claim(?:ed|s)?|shared?|clicked|otp|password|pin|credentials?|threaten(?:ed)?)\b",
+    re.I,
+)
 
 ABBREVIATIONS = {"rs", "no", "mr", "mrs", "ms", "dr", "a.m", "p.m", "ref", "st", "vs", "e.g", "i.e"}
 
@@ -314,7 +450,7 @@ def build_claims(text: str, entities: list[ExtractedEntity], evidence_id: str, c
     claims = []
     for s, e in _sentence_spans(text):
         inside = [ent.id for ent in entities if s <= ent.char_start and ent.char_end <= e]
-        if not inside:
+        if not inside and not ACTION_CUES.search(text, s, e):
             continue
         claims.append(
             Claim(
@@ -347,6 +483,13 @@ def extract(evidence: Evidence, path: Path) -> ExtractionResult:
         return ExtractionResult(**base, status="failed", notes=[f"Text extraction failed: {e}"])
 
     notes: list[str] = []
+    ocr_raw_text = None
+    if method == "ocr":
+        ocr_raw_text = text
+        text, repairs = clean_ocr_text(text)
+        done = [f"{n} {kind}" for kind, n in repairs.items() if n]
+        if done:
+            notes.append(f"OCR text repaired ({', '.join(done)}); raw OCR output kept in ocr_raw_text")
     truncated = len(text) > MAX_TEXT_CHARS
     if truncated:
         text = text[:MAX_TEXT_CHARS]
@@ -355,10 +498,13 @@ def extract(evidence: Evidence, path: Path) -> ExtractionResult:
     if not text.strip():
         if evidence.type == "pdf":
             notes.append("PDF has no text layer; it may be scanned and require OCR")
+        elif evidence.type == "image":
+            notes.append("OCR found no readable text in the image")
         else:
             notes.append("No text content found")
         return ExtractionResult(
-            **base, status="no_text", method=method, extracted_text=text, text_truncated=truncated, notes=notes
+            **base, status="no_text", method=method, extracted_text=text, text_truncated=truncated, notes=notes,
+            ocr_raw_text=ocr_raw_text,
         )
 
     confidence = METHOD_CONFIDENCE[method]
@@ -374,4 +520,5 @@ def extract(evidence: Evidence, path: Path) -> ExtractionResult:
         claims=claims,
         confidence=confidence,
         notes=notes,
+        ocr_raw_text=ocr_raw_text,
     )

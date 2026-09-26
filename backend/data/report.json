@@ -1,0 +1,1462 @@
+{
+  "next_seq": 1,
+  "ids": {},
+  "results": {
+    "report": {
+      "status": "ready",
+      "generated_at": "2026-09-26T06:57:07.699072Z",
+      "redacted": false,
+      "sections": [
+        {
+          "key": "summary",
+          "title": "Incident summary",
+          "statements": [
+            {
+              "text": "5 evidence items registered (2 image, 3 pdf).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Text was read from 5 of 5 items (2 via ocr, 3 via pypdf).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "20 claims extracted verbatim; the timeline has 9 events (1 with a resolved date).",
+              "evidence_ids": [],
+              "claim_ids": [
+                "CL-001",
+                "CL-002",
+                "CL-006",
+                "CL-003",
+                "CL-004",
+                "CL-007",
+                "CL-008",
+                "CL-009",
+                "CL-010",
+                "CL-011",
+                "CL-012",
+                "CL-013",
+                "CL-014",
+                "CL-015",
+                "CL-021",
+                "CL-016",
+                "CL-017",
+                "CL-018",
+                "CL-019",
+                "CL-020"
+              ],
+              "event_ids": [
+                "TL-008",
+                "TL-001",
+                "TL-002",
+                "TL-004",
+                "TL-005",
+                "TL-006",
+                "TL-007",
+                "TL-009",
+                "TL-010"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "Dated events run from TL-008 (2026-09-27, time unknown) to TL-008 (2026-09-27, time unknown).",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-016",
+                "CL-016"
+              ],
+              "event_ids": [
+                "TL-008",
+                "TL-008"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "URLs stated (1): https://secure-bank-login.example.com/verify (EV-001, EV-004, EV-005).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Transaction IDs stated (2): TXN12345 (EV-001, EV-003, EV-005); 455566677788 (EV-002).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Amounts stated (2): Rs 25,000 (EV-003, EV-005); Rs 10,000 (EV-002).",
+              "evidence_ids": [
+                "EV-002",
+                "EV-003",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Phone numbers stated (1): +91 98765 43210 (EV-003).",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Email addresses stated (1): fraudster@example.com (EV-002).",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "13 missing-information items open (2 high severity).",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": [
+                "MI-001",
+                "MI-009",
+                "MI-002",
+                "MI-003",
+                "MI-004",
+                "MI-005",
+                "MI-006",
+                "MI-007",
+                "MI-008",
+                "MI-010",
+                "MI-011",
+                "MI-012",
+                "MI-013"
+              ]
+            },
+            {
+              "text": "1 contradiction flagged and left unresolved.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": [
+                "CT-001"
+              ]
+            },
+            {
+              "text": "This report restates what the evidence says. It does not determine which statements are true.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "evidence",
+          "title": "Evidence inventory",
+          "statements": [
+            {
+              "text": "EV-001 · Screenshot 2026-09-26 112910.png · image · 40,978 B · sha256 f501c7565086a6c7… · ocr, 7 claims",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001",
+                "CL-002",
+                "CL-006",
+                "CL-003",
+                "CL-004",
+                "CL-007",
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-002 · caseforge_evidence_02.pdf · pdf · 1,898 B · sha256 5d2dcaf2934090e5… · pypdf, 4 claims",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-009",
+                "CL-010",
+                "CL-011",
+                "CL-012"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-003 · caseforge_evidence_03.pdf · pdf · 1,907 B · sha256 0193775a1bd73064… · pypdf, 3 claims",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-013",
+                "CL-014",
+                "CL-015"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-004 · caseforge_screenshot_01.png · image · 22,578 B · sha256 5a799b89c716209b… · ocr, 1 claim",
+              "evidence_ids": [
+                "EV-004"
+              ],
+              "claim_ids": [
+                "CL-021"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-005 · caseforge_evidence_01.pdf · pdf · 1,964 B · sha256 c500eb2e3774b148… · pypdf, 5 claims",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-016",
+                "CL-017",
+                "CL-018",
+                "CL-019",
+                "CL-020"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "timeline",
+          "title": "Reconstructed timeline",
+          "statements": [
+            {
+              "text": "TL-008 — 2026-09-27, time unknown: “Incident date: 27 September 2026.”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-016"
+              ],
+              "event_ids": [
+                "TL-008"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-001 — date unresolved ('27/09/2026'), 10:42: “3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba” ⚠ Date '27/09/2026' is ambiguous or unrecognised; not normalized",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001"
+              ],
+              "event_ids": [
+                "TL-001"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-002 — date unknown, 10:55: “11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-004"
+              ],
+              "event_ids": [
+                "TL-002"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-004 — date unknown, 11:00: “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-007"
+              ],
+              "event_ids": [
+                "TL-004"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-005 — date unknown, 11:00: “At 11:00 AM, another payment of Rs 10,000 was requested.”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-009"
+              ],
+              "event_ids": [
+                "TL-005"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-006 — date unknown, time unknown: “Bank support record: Transaction TXN12345 is marked successful for Rs 25,000.”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-013"
+              ],
+              "event_ids": [
+                "TL-006"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-007 — date unknown, 11:15: “Recipient statement: No payment had been received at 11:15 AM.”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-014"
+              ],
+              "event_ids": [
+                "TL-007"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-009 — date unknown, 10:42: “At 10:42 AM, the victim received a message requesting bank”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-017"
+              ],
+              "event_ids": [
+                "TL-009"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-010 — date unknown, 10:55: “At 10:55 AM, a transaction of Rs 25,000 was recorded.”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-020"
+              ],
+              "event_ids": [
+                "TL-010"
+              ],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "title": "Other extracted claims (not on the timeline)",
+          "statements": [
+            {
+              "text": "“5 The message contained the URL https://secure-bank-login.example.com/verify.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-002"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“7 At 10:42 AM, the sender requested that I verify my banking credentials through the link.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-006"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“9 Transaction ID: TXN12345.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-003"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“15 The sender later claimed that no payment had been requested.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“The sender claimed that the earlier payment had not been received.”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-010"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Recipient email: fraudster@example.com”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-011"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“UTR: 455566677788.”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-012"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Contact number: +91 98765 43210”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-015"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Open: https://secure-bank-login.example.com/verify”",
+              "evidence_ids": [
+                "EV-004"
+              ],
+              "claim_ids": [
+                "CL-021"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Suspicious URL: https://secure-bank-login.example.com/verify”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-018"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Transaction ID: TXN12345.”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-019"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "missing",
+          "title": "Missing information",
+          "statements": [
+            {
+              "text": "unresolved date — 1 × [high]: a date is written but not resolved to a calendar date (day/month order not stated). E.g. MI-001 “3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001"
+              ],
+              "event_ids": [
+                "TL-001"
+              ],
+              "item_ids": [
+                "MI-001"
+              ]
+            },
+            {
+              "text": "missing timestamp — 1 × [high]: an amount is stated with no date or time. E.g. MI-009 “Bank support record: Transaction TXN12345 is marked successful for Rs 25,000.”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-013"
+              ],
+              "event_ids": [
+                "TL-006"
+              ],
+              "item_ids": [
+                "MI-009"
+              ]
+            },
+            {
+              "text": "unidentified actor — 1 × [medium]: a sender/caller is referred to but never identified by phone or email. E.g. MI-002 “3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001",
+                "CL-006",
+                "CL-007",
+                "CL-008"
+              ],
+              "event_ids": [
+                "TL-001",
+                "TL-004"
+              ],
+              "item_ids": [
+                "MI-002"
+              ]
+            },
+            {
+              "text": "missing currency — 2 × [medium]: a number in a payment statement has no currency marker. E.g. MI-003 “11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.”; MI-006 “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-004",
+                "CL-007"
+              ],
+              "event_ids": [
+                "TL-002",
+                "TL-004"
+              ],
+              "item_ids": [
+                "MI-003",
+                "MI-006"
+              ]
+            },
+            {
+              "text": "missing date — 7 × [medium]: a time is stated without a date in the same statement. E.g. MI-004 “11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.”; MI-005 “7 At 10:42 AM, the sender requested that I verify my banking credentials through the link.”; MI-007 “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.”; and 4 more",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-004",
+                "CL-006",
+                "CL-007",
+                "CL-009",
+                "CL-014",
+                "CL-017",
+                "CL-020"
+              ],
+              "event_ids": [
+                "TL-002",
+                "TL-004",
+                "TL-005",
+                "TL-007",
+                "TL-009",
+                "TL-010"
+              ],
+              "item_ids": [
+                "MI-004",
+                "MI-005",
+                "MI-007",
+                "MI-010",
+                "MI-011",
+                "MI-012",
+                "MI-013"
+              ]
+            },
+            {
+              "text": "unplaced event — 1 × [medium]: an event is placed only by a relative time (e.g. 'later'). E.g. MI-008 “15 The sender later claimed that no payment had been requested.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": [
+                "MI-008"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "contradictions",
+          "title": "Contradictions",
+          "statements": [
+            {
+              "text": "CT-001 [affirmed_vs_denied] CL-007, CL-009 state that a payment was requested; CL-008 states that it was not. Both statements are kept; neither is treated as correct. A: “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.” (CL-007, EV-001) — B: “15 The sender later claimed that no payment had been requested.” (CL-008, EV-001) (+1 more claims)",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-007",
+                "CL-009",
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": [
+                "CT-001"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "redaction",
+          "title": "Integrity and redaction",
+          "statements": [
+            {
+              "text": "Originals re-hashed at report time: 5 of 5 match their registered SHA-256.",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Redacted copies of 5 items mask: 1 email, 1 phone, 4 transaction_id. Originals are not modified.",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "limitations",
+          "title": "Limitations and uncertainties",
+          "statements": [
+            {
+              "text": "Extraction and analysis are rule-based: claims are sentences with a recognised value or incident action; gaps and contradictions are flagged for review, can miss or over-flag, and are never resolved automatically.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Values are compared within a sentence; an adjacent sentence is only linked when unambiguous (one stating just a transaction ID next to one stating just an amount).",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Redaction is pattern-based; names and addresses are only masked when explicitly labelled (a name or address field, or a title such as Mr or Mrs). Review before sharing.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "2 items read by OCR (capture confidence 0.7). Spacing and digit slips are repaired deterministically (raw OCR kept), but symbols such as '₹' can be lost; check against the original image.",
+              "evidence_ids": [
+                "EV-001",
+                "EV-004"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "1 event state a date that was not resolved, so they are not placed chronologically.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [
+                "TL-001"
+              ],
+              "item_ids": []
+            }
+          ]
+        }
+      ]
+    },
+    "redacted": {
+      "status": "ready",
+      "generated_at": "2026-09-26T06:57:07.699072Z",
+      "redacted": true,
+      "sections": [
+        {
+          "key": "summary",
+          "title": "Incident summary",
+          "statements": [
+            {
+              "text": "5 evidence items registered (2 image, 3 pdf).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Text was read from 5 of 5 items (2 via ocr, 3 via pypdf).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "20 claims extracted verbatim; the timeline has 9 events (1 with a resolved date).",
+              "evidence_ids": [],
+              "claim_ids": [
+                "CL-001",
+                "CL-002",
+                "CL-006",
+                "CL-003",
+                "CL-004",
+                "CL-007",
+                "CL-008",
+                "CL-009",
+                "CL-010",
+                "CL-011",
+                "CL-012",
+                "CL-013",
+                "CL-014",
+                "CL-015",
+                "CL-021",
+                "CL-016",
+                "CL-017",
+                "CL-018",
+                "CL-019",
+                "CL-020"
+              ],
+              "event_ids": [
+                "TL-008",
+                "TL-001",
+                "TL-002",
+                "TL-004",
+                "TL-005",
+                "TL-006",
+                "TL-007",
+                "TL-009",
+                "TL-010"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "Dated events run from TL-008 (2026-09-27, time unknown) to TL-008 (2026-09-27, time unknown).",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-016",
+                "CL-016"
+              ],
+              "event_ids": [
+                "TL-008",
+                "TL-008"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "URLs stated (1): https://secure-bank-login.example.com/verify (EV-001, EV-004, EV-005).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Transaction IDs stated (2): [REDACTED_TRANSACTION_ID] (EV-001, EV-003, EV-005); [REDACTED_ACCOUNT] (EV-002).",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Amounts stated (2): Rs 25,000 (EV-003, EV-005); Rs 10,000 (EV-002).",
+              "evidence_ids": [
+                "EV-002",
+                "EV-003",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Phone numbers stated (1): [REDACTED_PHONE] (EV-003).",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Email addresses stated (1): [REDACTED_EMAIL] (EV-002).",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "13 missing-information items open (2 high severity).",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": [
+                "MI-001",
+                "MI-009",
+                "MI-002",
+                "MI-003",
+                "MI-004",
+                "MI-005",
+                "MI-006",
+                "MI-007",
+                "MI-008",
+                "MI-010",
+                "MI-011",
+                "MI-012",
+                "MI-013"
+              ]
+            },
+            {
+              "text": "1 contradiction flagged and left unresolved.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": [
+                "CT-001"
+              ]
+            },
+            {
+              "text": "This report restates what the evidence says. It does not determine which statements are true.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "evidence",
+          "title": "Evidence inventory",
+          "statements": [
+            {
+              "text": "EV-001 · Screenshot 2026-09-26 112910.png · image · 40,978 B · sha256 f501c7565086a6c7… · ocr, 7 claims",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001",
+                "CL-002",
+                "CL-006",
+                "CL-003",
+                "CL-004",
+                "CL-007",
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-002 · caseforge_evidence_02.pdf · pdf · 1,898 B · sha256 5d2dcaf2934090e5… · pypdf, 4 claims",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-009",
+                "CL-010",
+                "CL-011",
+                "CL-012"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-003 · caseforge_evidence_03.pdf · pdf · 1,907 B · sha256 0193775a1bd73064… · pypdf, 3 claims",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-013",
+                "CL-014",
+                "CL-015"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-004 · caseforge_screenshot_01.png · image · 22,578 B · sha256 5a799b89c716209b… · ocr, 1 claim",
+              "evidence_ids": [
+                "EV-004"
+              ],
+              "claim_ids": [
+                "CL-021"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "EV-005 · caseforge_evidence_01.pdf · pdf · 1,964 B · sha256 c500eb2e3774b148… · pypdf, 5 claims",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-016",
+                "CL-017",
+                "CL-018",
+                "CL-019",
+                "CL-020"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "timeline",
+          "title": "Reconstructed timeline",
+          "statements": [
+            {
+              "text": "TL-008 — 2026-09-27, time unknown: “Incident date: 27 September 2026.”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-016"
+              ],
+              "event_ids": [
+                "TL-008"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-001 — date unresolved ('27/09/2026'), 10:42: “3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba” ⚠ Date '27/09/2026' is ambiguous or unrecognised; not normalized",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001"
+              ],
+              "event_ids": [
+                "TL-001"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-002 — date unknown, 10:55: “11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-004"
+              ],
+              "event_ids": [
+                "TL-002"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-004 — date unknown, 11:00: “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-007"
+              ],
+              "event_ids": [
+                "TL-004"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-005 — date unknown, 11:00: “At 11:00 AM, another payment of Rs 10,000 was requested.”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-009"
+              ],
+              "event_ids": [
+                "TL-005"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-006 — date unknown, time unknown: “Bank support record: Transaction [REDACTED_TRANSACTION_ID] is marked successful for Rs 25,000.”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-013"
+              ],
+              "event_ids": [
+                "TL-006"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-007 — date unknown, 11:15: “Recipient statement: No payment had been received at 11:15 AM.”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-014"
+              ],
+              "event_ids": [
+                "TL-007"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-009 — date unknown, 10:42: “At 10:42 AM, the victim received a message requesting bank”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-017"
+              ],
+              "event_ids": [
+                "TL-009"
+              ],
+              "item_ids": []
+            },
+            {
+              "text": "TL-010 — date unknown, 10:55: “At 10:55 AM, a transaction of Rs 25,000 was recorded.”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-020"
+              ],
+              "event_ids": [
+                "TL-010"
+              ],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "title": "Other extracted claims (not on the timeline)",
+          "statements": [
+            {
+              "text": "“5 The message contained the URL https://secure-bank-login.example.com/verify.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-002"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“7 At 10:42 AM, the sender requested that I verify my banking credentials through the link.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-006"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“9 Transaction ID: [REDACTED_TRANSACTION_ID].”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-003"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“15 The sender later claimed that no payment had been requested.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“The sender claimed that the earlier payment had not been received.”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-010"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Recipient email: [REDACTED_EMAIL]”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-011"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“UTR: [REDACTED_TRANSACTION_ID].”",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-012"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Contact number: [REDACTED_PHONE]”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-015"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Open: https://secure-bank-login.example.com/verify”",
+              "evidence_ids": [
+                "EV-004"
+              ],
+              "claim_ids": [
+                "CL-021"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Suspicious URL: https://secure-bank-login.example.com/verify”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-018"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "“Transaction ID: [REDACTED_TRANSACTION_ID].”",
+              "evidence_ids": [
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-019"
+              ],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "missing",
+          "title": "Missing information",
+          "statements": [
+            {
+              "text": "unresolved date — 1 × [high]: a date is written but not resolved to a calendar date (day/month order not stated). E.g. MI-001 “3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001"
+              ],
+              "event_ids": [
+                "TL-001"
+              ],
+              "item_ids": [
+                "MI-001"
+              ]
+            },
+            {
+              "text": "missing timestamp — 1 × [high]: an amount is stated with no date or time. E.g. MI-009 “Bank support record: Transaction [REDACTED_TRANSACTION_ID] is marked successful for Rs 25,000.”",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "claim_ids": [
+                "CL-013"
+              ],
+              "event_ids": [
+                "TL-006"
+              ],
+              "item_ids": [
+                "MI-009"
+              ]
+            },
+            {
+              "text": "unidentified actor — 1 × [medium]: a sender/caller is referred to but never identified by phone or email. E.g. MI-002 “3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-001",
+                "CL-006",
+                "CL-007",
+                "CL-008"
+              ],
+              "event_ids": [
+                "TL-001",
+                "TL-004"
+              ],
+              "item_ids": [
+                "MI-002"
+              ]
+            },
+            {
+              "text": "missing currency — 2 × [medium]: a number in a payment statement has no currency marker. E.g. MI-003 “11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.”; MI-006 “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-004",
+                "CL-007"
+              ],
+              "event_ids": [
+                "TL-002",
+                "TL-004"
+              ],
+              "item_ids": [
+                "MI-003",
+                "MI-006"
+              ]
+            },
+            {
+              "text": "missing date — 7 × [medium]: a time is stated without a date in the same statement. E.g. MI-004 “11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.”; MI-005 “7 At 10:42 AM, the sender requested that I verify my banking credentials through the link.”; MI-007 “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.”; and 4 more",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-005"
+              ],
+              "claim_ids": [
+                "CL-004",
+                "CL-006",
+                "CL-007",
+                "CL-009",
+                "CL-014",
+                "CL-017",
+                "CL-020"
+              ],
+              "event_ids": [
+                "TL-002",
+                "TL-004",
+                "TL-005",
+                "TL-007",
+                "TL-009",
+                "TL-010"
+              ],
+              "item_ids": [
+                "MI-004",
+                "MI-005",
+                "MI-007",
+                "MI-010",
+                "MI-011",
+                "MI-012",
+                "MI-013"
+              ]
+            },
+            {
+              "text": "unplaced event — 1 × [medium]: an event is placed only by a relative time (e.g. 'later'). E.g. MI-008 “15 The sender later claimed that no payment had been requested.”",
+              "evidence_ids": [
+                "EV-001"
+              ],
+              "claim_ids": [
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": [
+                "MI-008"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "contradictions",
+          "title": "Contradictions",
+          "statements": [
+            {
+              "text": "CT-001 [affirmed_vs_denied] CL-007, CL-009 state that a payment was requested; CL-008 states that it was not. Both statements are kept; neither is treated as correct. A: “13 At 11:00 AM, another payment of 10,000 was requested by the same sender.” (CL-007, EV-001) — B: “15 The sender later claimed that no payment had been requested.” (CL-008, EV-001) (+1 more claims)",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002"
+              ],
+              "claim_ids": [
+                "CL-007",
+                "CL-009",
+                "CL-008"
+              ],
+              "event_ids": [],
+              "item_ids": [
+                "CT-001"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "redaction",
+          "title": "Integrity and redaction",
+          "statements": [
+            {
+              "text": "Originals re-hashed at report time: 5 of 5 match their registered SHA-256.",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Redacted copies of 5 items mask: 1 email, 1 phone, 4 transaction_id. Originals are not modified.",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003",
+                "EV-004",
+                "EV-005"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            }
+          ]
+        },
+        {
+          "key": "limitations",
+          "title": "Limitations and uncertainties",
+          "statements": [
+            {
+              "text": "Extraction and analysis are rule-based: claims are sentences with a recognised value or incident action; gaps and contradictions are flagged for review, can miss or over-flag, and are never resolved automatically.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Values are compared within a sentence; an adjacent sentence is only linked when unambiguous (one stating just a transaction ID next to one stating just an amount).",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "Redaction is pattern-based; names and addresses are only masked when explicitly labelled (a name or address field, or a title such as Mr or Mrs). Review before sharing.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "2 items read by OCR (capture confidence 0.7). Spacing and digit slips are repaired deterministically (raw OCR kept), but symbols such as '₹' can be lost; check against the original image.",
+              "evidence_ids": [
+                "EV-001",
+                "EV-004"
+              ],
+              "claim_ids": [],
+              "event_ids": [],
+              "item_ids": []
+            },
+            {
+              "text": "1 event state a date that was not resolved, so they are not placed chronologically.",
+              "evidence_ids": [],
+              "claim_ids": [],
+              "event_ids": [
+                "TL-001"
+              ],
+              "item_ids": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

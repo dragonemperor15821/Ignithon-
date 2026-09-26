@@ -1,0 +1,206 @@
+{
+  "next_seq": 1,
+  "ids": {},
+  "results": {
+    "set": {
+      "status": "ready",
+      "generated_at": "2026-09-26T06:57:07.681790Z",
+      "items": [
+        {
+          "evidence_id": "EV-001",
+          "source_sha256": "f501c7565086a6c79a891bd4dd7deba1fad89eda0ff2fae27ddac3801f74707f",
+          "status": "redacted",
+          "redacted_text": "1 PHISHING INCIDENT TEST EVIDENCE\n2\n3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba\n4\n5 The message contained the URL https://secure-bank-login.example.com/verify.\n6\n7 At 10:42 AM, the sender requested that I verify my banking credentials through the link.\n8\n9 Transaction ID: [REDACTED_TRANSACTION_ID].\n10\n11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details.\n12\n13 At 11:00 AM, another payment of 10,000 was requested by the same sender.\n14\n15 The sender later claimed that no payment had been requested.",
+          "spans": [
+            {
+              "type": "transaction_id",
+              "placeholder": "[REDACTED_TRANSACTION_ID]",
+              "char_start": 333,
+              "char_end": 341,
+              "entity_id": "EV-001-E04"
+            }
+          ],
+          "claims": [
+            {
+              "claim_id": "CL-001",
+              "text": "3 On 27/09/2026 at 10:42 AM, I received a suspicious message from an unknown sender claiming that my ba"
+            },
+            {
+              "claim_id": "CL-002",
+              "text": "5 The message contained the URL https://secure-bank-login.example.com/verify."
+            },
+            {
+              "claim_id": "CL-006",
+              "text": "7 At 10:42 AM, the sender requested that I verify my banking credentials through the link."
+            },
+            {
+              "claim_id": "CL-003",
+              "text": "9 Transaction ID: [REDACTED_TRANSACTION_ID]."
+            },
+            {
+              "claim_id": "CL-004",
+              "text": "11 At 10:55 AM, a transaction of 25,000 was recorded after the user entered their details."
+            },
+            {
+              "claim_id": "CL-007",
+              "text": "13 At 11:00 AM, another payment of 10,000 was requested by the same sender."
+            },
+            {
+              "claim_id": "CL-008",
+              "text": "15 The sender later claimed that no payment had been requested."
+            }
+          ],
+          "counts": {
+            "transaction_id": 1
+          },
+          "notes": []
+        },
+        {
+          "evidence_id": "EV-002",
+          "source_sha256": "5d2dcaf2934090e5385905b367f77b85323f7f75c3cd3ec99e92a158b5731adb",
+          "status": "redacted",
+          "redacted_text": "Digital Fraud Incident Evidence 02\nAt 11:00 AM, another payment of Rs 10,000 was requested.\nThe sender claimed that the earlier payment had not been received.\nRecipient email: [REDACTED_EMAIL]\nUTR: [REDACTED_TRANSACTION_ID]. This identifier should be linked to the nearby transaction statement.\n",
+          "spans": [
+            {
+              "type": "email",
+              "placeholder": "[REDACTED_EMAIL]",
+              "char_start": 176,
+              "char_end": 197,
+              "entity_id": "EV-002-E03"
+            },
+            {
+              "type": "transaction_id",
+              "placeholder": "[REDACTED_TRANSACTION_ID]",
+              "char_start": 203,
+              "char_end": 215,
+              "entity_id": "EV-002-E04"
+            }
+          ],
+          "claims": [
+            {
+              "claim_id": "CL-009",
+              "text": "At 11:00 AM, another payment of Rs 10,000 was requested."
+            },
+            {
+              "claim_id": "CL-010",
+              "text": "The sender claimed that the earlier payment had not been received."
+            },
+            {
+              "claim_id": "CL-011",
+              "text": "Recipient email: [REDACTED_EMAIL]"
+            },
+            {
+              "claim_id": "CL-012",
+              "text": "UTR: [REDACTED_TRANSACTION_ID]."
+            }
+          ],
+          "counts": {
+            "email": 1,
+            "transaction_id": 1
+          },
+          "notes": []
+        },
+        {
+          "evidence_id": "EV-003",
+          "source_sha256": "0193775a1bd73064b3a4aacc709189f2cda935f9db2d446420de3eede4383892",
+          "status": "redacted",
+          "redacted_text": "Digital Fraud Incident Evidence 03\nBank support record: Transaction [REDACTED_TRANSACTION_ID] is marked successful for Rs 25,000.\nRecipient statement: No payment had been received at 11:15 AM.\nPotential conflict: the supplied records contain different statements about receipt of funds.\nContact number: [REDACTED_PHONE]\n",
+          "spans": [
+            {
+              "type": "transaction_id",
+              "placeholder": "[REDACTED_TRANSACTION_ID]",
+              "char_start": 68,
+              "char_end": 76,
+              "entity_id": "EV-003-E01"
+            },
+            {
+              "type": "phone",
+              "placeholder": "[REDACTED_PHONE]",
+              "char_start": 286,
+              "char_end": 301,
+              "entity_id": "EV-003-E04"
+            }
+          ],
+          "claims": [
+            {
+              "claim_id": "CL-013",
+              "text": "Bank support record: Transaction [REDACTED_TRANSACTION_ID] is marked successful for Rs 25,000."
+            },
+            {
+              "claim_id": "CL-014",
+              "text": "Recipient statement: No payment had been received at 11:15 AM."
+            },
+            {
+              "claim_id": "CL-015",
+              "text": "Contact number: [REDACTED_PHONE]"
+            }
+          ],
+          "counts": {
+            "phone": 1,
+            "transaction_id": 1
+          },
+          "notes": []
+        },
+        {
+          "evidence_id": "EV-004",
+          "source_sha256": "5a799b89c716209b2c19c3f5200a2acd1003b3facfa1157207c2c6ee2a8fe052",
+          "status": "redacted",
+          "redacted_text": "BANKALERT\n27/09/202610:42 AM\nSecurity verification required.\nOpen: https://secure-bank-login.example.com/verify",
+          "spans": [],
+          "claims": [
+            {
+              "claim_id": "CL-021",
+              "text": "Open: https://secure-bank-login.example.com/verify"
+            }
+          ],
+          "counts": {},
+          "notes": [
+            "No sensitive identifiers detected"
+          ]
+        },
+        {
+          "evidence_id": "EV-005",
+          "source_sha256": "c500eb2e3774b148c25c9f48cbfb06fbc5f4ec23a6a60dfc7e71c0cfa3c5183f",
+          "status": "redacted",
+          "redacted_text": "Digital Fraud Incident Evidence 01\nIncident date: 27 September 2026. At 10:42 AM, the victim received a message requesting bank\nverification.\nSuspicious URL: https://secure-bank-login.example.com/verify\nTransaction ID: [REDACTED_TRANSACTION_ID]. At 10:55 AM, a transaction of Rs 25,000 was recorded.\nSource note: This document is synthetic test evidence created for CaseForge.\n",
+          "spans": [
+            {
+              "type": "transaction_id",
+              "placeholder": "[REDACTED_TRANSACTION_ID]",
+              "char_start": 219,
+              "char_end": 227,
+              "entity_id": "EV-005-E04"
+            }
+          ],
+          "claims": [
+            {
+              "claim_id": "CL-016",
+              "text": "Incident date: 27 September 2026."
+            },
+            {
+              "claim_id": "CL-017",
+              "text": "At 10:42 AM, the victim received a message requesting bank"
+            },
+            {
+              "claim_id": "CL-018",
+              "text": "Suspicious URL: https://secure-bank-login.example.com/verify"
+            },
+            {
+              "claim_id": "CL-019",
+              "text": "Transaction ID: [REDACTED_TRANSACTION_ID]."
+            },
+            {
+              "claim_id": "CL-020",
+              "text": "At 10:55 AM, a transaction of Rs 25,000 was recorded."
+            }
+          ],
+          "counts": {
+            "transaction_id": 1
+          },
+          "notes": []
+        }
+      ],
+      "notes": []
+    }
+  }
+}

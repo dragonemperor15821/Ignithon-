@@ -9,3 +9,9 @@ data/timeline.json
 data/*.tmp
 data/uploads/
 .env
+data/missing_info.json
+data/contradictions.json
+data/redactions.json
+data/report.json
+data/case.json
+data/audit.json

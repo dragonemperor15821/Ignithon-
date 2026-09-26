@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import analysis, case, evidence, extraction, health, timeline
+from app.routers import analysis, case, evidence, extraction, health, integrity, timeline
 
 app = FastAPI(
     title="CaseForge API",
@@ -23,3 +23,4 @@ app.include_router(extraction.router)
 app.include_router(timeline.router)
 app.include_router(analysis.router)
 app.include_router(case.router)
+app.include_router(integrity.router)

@@ -4,9 +4,9 @@ from pathlib import Path
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from app import store
+from app import audit, extraction_store, store
 from app.integrity import sha256_of_file
-from app.models import Evidence, RejectedFile, UploadResponse
+from app.models import DeleteEvidenceResponse, Evidence, RejectedFile, UploadResponse
 
 router = APIRouter(prefix="/api/evidence", tags=["evidence"])
 
@@ -68,6 +68,8 @@ async def _ingest(upload: UploadFile) -> Evidence | RejectedFile:
         status="pending",
     )
     store.add(evidence)
+    audit.record("evidence_uploaded", ev_id, detail=filename)
+    audit.record("sha256_calculated", ev_id, detail=evidence.sha256)
     return evidence
 
 
@@ -98,3 +100,41 @@ def get_evidence(evidence_id: str) -> Evidence:
     if evidence is None:
         raise HTTPException(status_code=404, detail=f"Evidence {evidence_id} not found")
     return evidence
+
+
+@router.delete("/{evidence_id}", response_model=DeleteEvidenceResponse)
+def delete_evidence(evidence_id: str) -> DeleteEvidenceResponse:
+    """Delete one evidence item: its stored original, its registry record and its extraction result.
+
+    The file is removed first; if that fails nothing else is changed and an error is returned.
+    Other evidence is never touched, and the deletion is recorded in the chain of custody."""
+    evidence = store.get(evidence_id)
+    if evidence is None:
+        raise HTTPException(status_code=404, detail=f"Evidence {evidence_id} not found")
+
+    path = store.UPLOADS_DIR / evidence.stored_filename
+    file_removed = False
+    if path.exists():
+        try:
+            path.chmod(0o644)  # originals are stored read-only
+            path.unlink()
+            file_removed = True
+        except OSError as e:
+            audit.record("evidence_deleted", evidence_id, status="failed", detail=f"Could not remove stored file: {e}")
+            raise HTTPException(status_code=500, detail=f"Could not delete the stored file for {evidence_id}: {e}")
+
+    store.remove(evidence_id)
+    extraction_removed = extraction_store.remove(evidence_id)
+    audit.record(
+        "evidence_deleted",
+        evidence_id,
+        detail=f"{evidence.filename} (sha256 {evidence.sha256})" + ("" if file_removed else "; stored file was already missing"),
+    )
+    return DeleteEvidenceResponse(
+        deleted=evidence_id,
+        filename=evidence.filename,
+        sha256=evidence.sha256,
+        file_removed=file_removed,
+        extraction_removed=extraction_removed,
+        message=f"Evidence {evidence_id} ({evidence.filename}) deleted",
+    )

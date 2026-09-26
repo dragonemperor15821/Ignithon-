@@ -348,3 +348,41 @@ export async function analyzeCase(onEvent: (e: CaseEvent) => void): Promise<Case
   if (!final) throw new Error("Case analysis ended without a result");
   return final;
 }
+
+// ---------------------------------------------------------------------------
+// Integrity verification + chain of custody
+// ---------------------------------------------------------------------------
+
+export interface IntegrityResult {
+  evidence_id: string;
+  status: "VERIFIED" | "INTEGRITY VIOLATION";
+  expected_sha256: string;
+  actual_sha256: string | null;
+  detail: string | null;
+  checked_at: string;
+}
+
+export interface AuditEvent {
+  seq: number;
+  timestamp: string;
+  action: string;
+  evidence_id: string | null;
+  status: string;
+  detail: string | null;
+}
+
+export const verifyIntegrity = (id: string) =>
+  getJson<IntegrityResult>(`/api/integrity/${encodeURIComponent(id)}`, "Integrity check failed");
+export const getAuditLog = () => getJson<AuditEvent[]>("/api/audit", "Failed to load audit log");
+
+export interface DeleteEvidenceResponse {
+  deleted: string;
+  filename: string;
+  sha256: string;
+  file_removed: boolean;
+  extraction_removed: boolean;
+  message: string;
+}
+
+export const deleteEvidence = (id: string) =>
+  getJson<DeleteEvidenceResponse>(`/api/evidence/${encodeURIComponent(id)}`, "Delete failed", { method: "DELETE" });

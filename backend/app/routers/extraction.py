@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from app import extraction_store, store
+from app import audit, extraction_store, store
 from app.extraction import extract
 from app.models import Evidence, ExtractionResult
 
@@ -11,7 +11,14 @@ def _run(evidence: Evidence) -> ExtractionResult:
     path = store.UPLOADS_DIR / evidence.stored_filename
     if not path.exists():
         raise HTTPException(status_code=409, detail=f"Original file for {evidence.id} is missing")
-    return extraction_store.save(extract(evidence, path))
+    result = extraction_store.save(extract(evidence, path))
+    audit.record(
+        "ocr_completed" if result.method == "ocr" else "extraction_completed",
+        evidence.id,
+        status=result.status,
+        detail=f"{len(result.claims)} claims" if result.status == "extracted" else (result.notes or [None])[0],
+    )
+    return result
 
 
 @router.post("/evidence/{evidence_id}/extract", response_model=ExtractionResult)

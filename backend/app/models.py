@@ -340,3 +340,37 @@ class CaseOverview(BaseModel):
     analyzed: int
     pending: int  # not analyzed yet, or a previous attempt was unavailable/failed
     last_run: CaseAnalysis | None = None
+
+
+# ---------------------------------------------------------------------------
+# Integrity verification and chain of custody
+# ---------------------------------------------------------------------------
+
+IntegrityStatus = Literal["VERIFIED", "INTEGRITY VIOLATION"]
+
+
+class IntegrityResult(BaseModel):
+    evidence_id: str
+    status: IntegrityStatus
+    expected_sha256: str  # hash recorded at ingestion
+    actual_sha256: str | None = None  # None when the stored original is missing
+    detail: str | None = None
+    checked_at: datetime
+
+
+class AuditEvent(BaseModel):
+    seq: int
+    timestamp: datetime
+    action: str
+    evidence_id: str | None = None
+    status: str
+    detail: str | None = None
+
+
+class DeleteEvidenceResponse(BaseModel):
+    deleted: str  # evidence ID
+    filename: str
+    sha256: str  # ingestion hash of the removed original, for the record
+    file_removed: bool  # False if the stored original was already missing
+    extraction_removed: bool
+    message: str

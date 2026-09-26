@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 
-from app import derived_store, extraction_store, store
+from app import audit, derived_store, extraction_store, store
 from app.models import CaseAnalysis, CaseError, CaseOverview, CaseStage, StageResult
 from app.routers import analysis
 from app.routers import extraction as extraction_router
@@ -157,6 +157,11 @@ def run_pipeline(force: bool = False) -> Iterator[dict]:
 
     result.finished_at = _now()
     derived_store.case.save([], lambda _: {"last_run": result})
+    audit.record(
+        "case_analysis_completed",
+        status=result.status,
+        detail=f"{result.evidence_analyzed}/{result.evidence_total} evidence readable, {len(result.errors)} errors",
+    )
     yield {"event": "done", "result": result.model_dump(mode="json")}
 
 

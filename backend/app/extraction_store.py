@@ -59,3 +59,13 @@ def list_all() -> list[ExtractionResult]:
     with _lock:
         data = _load()
     return [ExtractionResult.model_validate(r) for r in data["extractions"].values()]
+
+
+def remove(evidence_id: str) -> bool:
+    """Drop the extraction result of one deleted evidence item. Claim IDs are never reused."""
+    with _lock:
+        data = _load()
+        if data["extractions"].pop(evidence_id, None) is None:
+            return False
+        _save(data)
+    return True

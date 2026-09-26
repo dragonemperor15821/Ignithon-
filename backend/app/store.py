@@ -52,3 +52,16 @@ def list_all() -> list[Evidence]:
 
 def get(evidence_id: str) -> Evidence | None:
     return next((e for e in list_all() if e.id == evidence_id), None)
+
+
+def remove(evidence_id: str) -> Evidence | None:
+    """Drop one record from the registry. Other records and the ID counter are untouched (IDs are never reused)."""
+    with _lock:
+        data = _load()
+        kept = [e for e in data["evidence"] if e["id"] != evidence_id]
+        if len(kept) == len(data["evidence"]):
+            return None
+        removed = next(e for e in data["evidence"] if e["id"] == evidence_id)
+        data["evidence"] = kept
+        _save(data)
+    return Evidence(**removed)

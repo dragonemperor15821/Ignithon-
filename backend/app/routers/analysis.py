@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import PlainTextResponse
 
-from app import contradictions, derived_store, extraction_store, missing_info, redaction, report, store, timeline_store
+from app import audit, contradictions, derived_store, extraction_store, missing_info, redaction, report, store, timeline_store
 from app.models import (
     ContradictionReport,
     IncidentReport,
@@ -154,7 +154,9 @@ def save_report(
         store.UPLOADS_DIR,
         _now(),
     )
-    return derived_store.report.save([], lambda _: {"report": built, "redacted": report.redacted_copy(built)})
+    saved = derived_store.report.save([], lambda _: {"report": built, "redacted": report.redacted_copy(built)})
+    audit.record("report_generated", detail=f"{sum(len(s.statements) for s in built.sections)} statements")
+    return saved
 
 
 @router.get("/report", response_model=IncidentReport)
